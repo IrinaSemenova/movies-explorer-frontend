@@ -1,0 +1,142 @@
+.burger {
+  padding: 0;
+  margin: 0;
+  background-color: rgba(0,0,0,.3);
+  position: fixed;
+  justify-content: end;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  transition: visibility .5s,opacity .5s ease-in-out;
+  overflow: hidden;
+  visibility: hidden;
+  z-index: 2;
+}
+.burger_opened {
+  visibility: visible;
+  opacity: 1;
+}
+.burger__overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  cursor: pointer;
+}
+.burger__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #FAFAFA;
+}
+.burger__close-button {
+  background-image: url(../../images/close.svg);
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  border: none;
+  cursor: pointer;
+  transition: .5s;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+}
+.burger__close-button:hover {
+  opacity: 0.8;
+}
+.burger__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 144px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+.burger__link {
+  text-decoration: none;
+  text-align: center;
+  color: #000000;
+  transition: 0.8s ease;
+  cursor: pointer;
+  padding-bottom: 9px;
+}
+.burger__link:hover {
+  opacity: 0.7;
+}
+.burger__link_active {
+  text-decoration: none;
+  text-align: center;
+  color: #000000;
+  transition: 0.8s ease;
+  cursor: pointer;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #7489ED;
+}
+.burger__account {
+  display: flex;
+  align-items: center;
+  margin-bottom: 48px;
+}
+.burger__link_type_profile {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+  padding: 0;
+  margin-right: 13px;
+  cursor: pointer;
+}
+.burger__icon {
+  background: rgba(192, 219, 117, 0.5) url("../../images/icon-main.svg") center no-repeat;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+@media (min-width: 400px) {
+  .burger__container {
+    width: 68%;
+  }
+}
+@media (min-width: 768px) {
+  .burger__menu {
+    gap: 22px;
+    margin-top: 159px;
+  }
+  .burger__close-button {
+    top: 22px;
+    right: 22px;
+  }
+  .burger__link {
+    padding-bottom: 6px;
+  }
+  .burger__link_active {
+    padding-bottom: 4px;
+  }
+  .burger__account {
+    margin-bottom: 92px;
+  }
+  .burger__link_type_profile {
+    margin-right: 22px;
+    padding: 0;
+  }
+}

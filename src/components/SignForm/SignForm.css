@@ -1,0 +1,131 @@
+.sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 0 30px;
+  margin: auto;
+  width: 260px;
+}
+.sign__header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.sign__logo {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 50px;
+  align-self: center;
+}
+.sign__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+  padding: 0 0 80px 0;
+  margin: 0;
+}
+.sign__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.sign__submit {
+  background-color: #7489ED;
+  color: #FFFFFF;
+  width: 260px;
+  height: 45px;
+  margin: 159px 0 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: .5s;
+  border-radius: 3px;
+  border: none;
+}
+.sign__submit:hover {
+  opacity: 0.8;
+}
+
+.sign__block {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #A0A0A0;
+  text-decoration: none;
+  display: block;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.sign__text {
+  padding: 0;
+  margin: 14px 7px 0 0;
+}
+.sign__link {
+  text-decoration: none;
+  transition: 0.8s ease;
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  margin: 14px 0 0;
+  color: #7489ED;
+  text-decoration: none;
+}
+.sign__link:hover {
+  opacity: 0.7;
+}
+
+@media (min-width: 720px) {
+  .sign {
+    max-width: 768px;
+    padding: 232px 0 0;
+    margin: auto;
+    width: 396px;
+  }
+  .sign__header {
+    align-items: flex-start;
+  }
+  .sign__logo {
+    margin: 0 0 40px 0;
+    align-self: flex-start;
+  }
+  .sign__title {
+    padding: 0 0 40px 0;
+  }
+  .sign__submit {
+    width: 396px;
+    margin: 69px 0 0;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .sign__block {
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 232px;
+  }
+  .sign__text {
+    margin: 16px 6px 0 0;
+  }
+  .sign__link{
+    margin: 16px 0 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sign {
+    max-width: 1280px;
+    padding: 70px 0 0;
+    margin: auto;
+  }
+}
