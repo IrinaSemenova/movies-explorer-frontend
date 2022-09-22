@@ -17,6 +17,7 @@
   height: 38px;
   margin: 0 auto 50px;
   align-self: center;
+  cursor: pointer;
 }
 .sign__title {
   font-weight: 500;

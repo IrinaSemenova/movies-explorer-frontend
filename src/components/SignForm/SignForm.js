@@ -8,7 +8,9 @@ function SignForm ({title, submitText, children, signText, link, linkText}) {
   return (
     <section className="sign">
       <div className="sign__header">
+        <Link to='/'>
         <img src={logo} alt="Логотип" className="sign__logo"/>
+        </Link>
         <h1 className="sign__title">{title}</h1>
       </div>
 

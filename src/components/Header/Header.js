@@ -10,7 +10,9 @@ function Header () {
   return (
     <>
       <header className={routeMatch.path === "/" ? "header" : "header__gray"}>
-        <img src={logo} alt="Логотип" className="header__logo"/>
+        <Link to='/'>
+          <img src={logo} alt="Логотип" className="header__logo"/>
+        </Link>
         <Switch>
                 <Route exact path="/">
                     <div className="header__menu">
