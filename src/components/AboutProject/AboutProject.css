@@ -1,0 +1,166 @@
+.about {
+  padding: 70px 18px;
+  color: #000000;
+}
+.about__title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  padding: 0;
+  margin: 0 0 28px;
+}
+.about__line {
+  border-bottom: 1px solid #000;
+  border-radius: 0;
+  margin: 0 0 60px;
+}
+.about__info {
+  display: flex;
+  margin: 0 0 60px;
+  padding: 0;
+  flex-direction: column;
+  gap: 56px;
+}
+.about__info-block {
+  padding: 0;
+}
+.about__info-title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.about__info-subtitle {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  padding: 0;
+  margin: 0;
+}
+.about__steps {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+}
+.about__steps-time {
+  display: flex;
+  height: 35px;
+  margin: 0 0 10px;
+}
+.about__backend {
+  background: #7489ED;
+  display: flex;
+  width: 35%;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+.about__frontend {
+  background: rgba(192, 219, 117, 0.5);
+  display: flex;
+  width: 65%;
+  align-items: center;
+  justify-content: center;
+}
+.about__steps-text {
+  display: flex;
+  margin: 0;
+  color: #A0A0A0;
+}
+.about__backend-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+}
+
+.about__frontend-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+}
+
+@media (min-width: 768px) {
+  .about {
+    padding: 90px 50px;
+  }
+  .about__title {
+    font-size: 22px;
+    line-height: 27px;
+    margin: 0 0 23px;
+  }
+  .about__line {
+    margin: 0 0 70px;
+  }
+  .about__info {
+    display: flex;
+    margin: 0 0 93px;
+    padding: 0;
+    flex-direction: row;
+    gap: 30px;
+  }
+  .about__info-title {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 0 22px;
+  }
+  .about__info-subtitle {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about__steps {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .about__steps-time {
+    height: 36px;
+    margin: 0 0 14px;
+  }
+  .about__backend {
+    width: 21%;
+  }
+  .about__frontend {
+    width: 79%;
+  }
+  .about__backend-text {
+    width: 21%;
+  }
+  .about__frontend-text {
+    width: 79%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about {
+    padding: 110px 70px;
+  }
+  .about__info {
+    margin: 0 0 110px;
+    gap: 40px;
+  }
+  .about__info-title {
+    margin: 0 0 26px;
+  }
+  .about__info-subtitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .about__backend {
+    width: 20%;
+  }
+  .about__frontend {
+    width: 80%;
+  }
+  .about__backend-text {
+    width: 20%;
+  }
+  .about__frontend-text {
+    width: 80%;
+  }
+}
+
