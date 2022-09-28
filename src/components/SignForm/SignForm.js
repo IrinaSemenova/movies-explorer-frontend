@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import "./SignForm.css";
 import logo from "../../images/logo-main.svg";
 
-
-function SignForm ({title, submitText, children, signText, link, linkText}) {
+function SignForm ({title, submitText, children, signText, link, linkText, handleSubmit, isSubmitDisabled}) {
 
   return (
     <section className="sign">
@@ -14,9 +13,9 @@ function SignForm ({title, submitText, children, signText, link, linkText}) {
         <h1 className="sign__title">{title}</h1>
       </div>
 
-      <form className="sign__form" name="sign" id="sign">
+      <form className="sign__form" name="sign" id="sign" onSubmit={handleSubmit}>
         {children}
-        <button className="sign__submit" type="submit" id="sign__submit">{submitText}</button>
+        <button className="sign__submit" type="submit" id="sign__submit" disabled={isSubmitDisabled}>{submitText}</button>
       </form>
 
       <div className="sign__block">

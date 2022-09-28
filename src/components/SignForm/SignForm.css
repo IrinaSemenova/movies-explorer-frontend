@@ -46,13 +46,22 @@
   line-height: 15px;
   text-align: center;
   box-sizing: border-box;
-  cursor: pointer;
   transition: .5s;
   border-radius: 3px;
   border: none;
 }
 .sign__submit:hover {
+  cursor: pointer;
   opacity: 0.8;
+}
+
+.sign__submit:disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+}
+.sign__submit:hover:disabled {
+  opacity: 0.8;
+  cursor: auto;
 }
 
 .sign__block {
