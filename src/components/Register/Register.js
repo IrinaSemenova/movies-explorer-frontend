@@ -1,26 +1,14 @@
-import { useState, useEffect } from "react";
 import "./Register.css";
 import SignForm from "../SignForm/SignForm";
-import { Validation } from "../../utils/Validation";
+import Validation from "../../utils/Validation";
 
-function Register ({ onSubmit }) {
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-  const { values, handleChange, errors, resetForm, isValid } = Validation();
+function Register ({ onSubmit}) {
 
-  useEffect(() => {
-    resetForm();
-    setIsSubmitDisabled(true);
-  }, [resetForm]);
+  const { values, handleChange, errors, isValid } = Validation();
 
-  useEffect(() => {
-    setIsSubmitDisabled(!isValid);
-  }, [isValid]);
-
-  function handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    setIsSubmitDisabled(true);
     onSubmit(values);
-    resetForm();
   };
 
   return (
@@ -31,8 +19,9 @@ function Register ({ onSubmit }) {
       submitText="Зарегистрироваться"
       link="/signin"
       linkText="Войти"
-      isSubmitDisabled={isSubmitDisabled}
       onSubmit={handleSubmit}
+      errors={errors}
+      isValid={isValid}
       >
 
           <label className="register__label" htmlFor="name">Имя</label>
@@ -43,8 +32,8 @@ function Register ({ onSubmit }) {
                   minLength="2"
                   maxLength="30"
                   pattern="^[A-Za-zА-Яа-я\s]{1,}$"
-                  value={values.name || ''}
                   onChange={handleChange}
+                  value={values.name || ""}
                   required />
             <span className="register__error">{errors.name}</span>
             <label className="register__label" htmlFor="email">E-mail</label>
@@ -53,8 +42,8 @@ function Register ({ onSubmit }) {
                   name="email"
                   type="email"
                   pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
-                  value={values.email || ''}
                   onChange={handleChange}
+                  value={values.email || ""}
                   required />
             <span className="register__error">{errors.email}</span>
             <label className="register__label" htmlFor="password">Пароль</label>
@@ -62,8 +51,8 @@ function Register ({ onSubmit }) {
                   id="password"
                   name="password"
                   type="password"
-                  value={values.password || ''}
                   onChange={handleChange}
+                  value={values.password || ""}
                   required />
             <span className="register__error">{errors.password}</span>
 

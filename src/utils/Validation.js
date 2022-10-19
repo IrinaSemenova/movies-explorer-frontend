@@ -1,28 +1,26 @@
 //хук управления формой
 import { useState, useCallback } from "react";
 
-export function Validation() {
-  const [values, setValues] = useState({});
-  const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
+export default function Validation() {
+    const [values, setValues] = useState({});
+    const [errors, setErrors] = useState({});
+    const [isValid, setIsValid] = useState(false);
 
-  const handleChange = (e) => {
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
-    setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: target.validationMessage });
-    setIsValid(target.closest("form").checkValidity());
-  };
+    const handleChange = (evt) => {
+        const target = evt.target;
+        const name = target.name;
+        const value = target.value;
+        setValues({ ...values, [name]: value });
+        setErrors({ ...errors, [name]: target.validationMessage });
+        setIsValid(evt.target.closest("form").checkValidity());
+    };
 
-  const resetForm = useCallback(
-    (newValues = {}, newErrors = {}, newIsValid = false) => {
-      setValues(newValues);
-      setErrors(newErrors);
-      setIsValid(newIsValid);
-    },
-    [setValues, setErrors, setIsValid]
-  );
+    const resetForm = useCallback(() => {
+      setValues({});
+      setErrors({});
+      setIsValid(false);
+    }, []);
 
-  return { values, handleChange, errors, isValid, resetForm, setIsValid };
+    return { values, handleChange, errors, isValid, resetForm, setValues };
 }
+

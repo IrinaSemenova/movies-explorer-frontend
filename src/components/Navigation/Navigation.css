@@ -11,11 +11,55 @@
   border: none;
   outline: none;
 }
+.header__menu {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+}
+.header__link {
+  color: #000000;
+  margin-right: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.8s ease;
+}
+.header__link:hover {
+    opacity: 0.7;
+}
+
+.header__button {
+  color: #FFFFFF;
+  background: #7489ED;
+  width: 54px;
+  height: 26px;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: .5s;
+  border-radius: 3px;
+  border: none;
+}
+.header__button:hover {
+  opacity: 0.8;
+}
+
 
 @media (min-width: 768px) {
   .navigation__burger-icon {
     width: 44px;
     height: 44px;
+  }
+  .header__menu {
+    font-size: 12px;
+  }
+  .header__link {
+    margin-right: 30px;
+  }
+  .header__button {
+    width: 76px;
+    height: 32px;
   }
 }
 

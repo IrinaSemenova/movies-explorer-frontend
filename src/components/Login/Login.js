@@ -1,26 +1,14 @@
-import { useState, useEffect } from "react";
 import "./Login.css";
 import SignForm from "../SignForm/SignForm";
-import { Validation } from "../../utils/Validation";
+import Validation from "../../utils/Validation";
 
-function Login ({ onSubmit }) {
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-  const { values, handleChange, errors, resetForm, isValid } = Validation();
+const Login = ({onSubmit  }) => {
 
-  useEffect(() => {
-    resetForm();
-    setIsSubmitDisabled(true);
-  }, [resetForm]);
+  const { values, handleChange, errors, isValid } = Validation();
 
-  useEffect(() => {
-    setIsSubmitDisabled(!isValid);
-  }, [isValid]);
-
-  function handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    setIsSubmitDisabled(true);
     onSubmit(values);
-    resetForm();
   };
 
   return (
@@ -31,8 +19,9 @@ function Login ({ onSubmit }) {
       signText="Ещё не зарегистрированы?"
       link="/signup"
       linkText="Регистрация"
-      isSubmitDisabled={isSubmitDisabled}
       onSubmit={handleSubmit}
+      errors={errors}
+      isValid={isValid}
       >
           <label className="login__label" htmlFor="email">E-mail</label>
           <input className="login__input login__input_email"
@@ -40,8 +29,8 @@ function Login ({ onSubmit }) {
                 name="email"
                 type="email"
                 pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
-                value={values.email || ''}
                 onChange={handleChange}
+                value={values.email || ""}
                 required />
           <span className="login__error">{errors.email}</span>
           <label className="login__label" htmlFor="password">Пароль</label>
@@ -49,8 +38,8 @@ function Login ({ onSubmit }) {
                 id="password"
                 name="password"
                 type="password"
-                value={values.password || ''}
                 onChange={handleChange}
+                value={values.password || ""}
                 required />
           <span className="login__error">{errors.password}</span>
 

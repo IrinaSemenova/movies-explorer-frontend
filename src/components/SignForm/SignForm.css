@@ -50,12 +50,12 @@
   border-radius: 3px;
   border: none;
 }
-.sign__submit:hover {
+.sign__submit:hover{
   cursor: pointer;
   opacity: 0.8;
 }
 
-.sign__submit:disabled {
+.sign__submit_disabled {
   background: #F8F8F8;
   color: #C2C2C2;
 }

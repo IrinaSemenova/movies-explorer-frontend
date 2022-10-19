@@ -2,16 +2,44 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
-import { useState, useEffect } from "react";
+import Preloader from "../Preloader/Preloader";
+import "./Movies.css";
 
-function Movies () {
+function Movies ({
+  onSearch,
+  foundMovies,
+  savedMovies,
+  onSaveMovie,
+  onDeleteMovie,
+  onSubmitCheckbox,
+  isNotFound,
+  isLoading,
+}){
 
   return (
     <>
-      <Header />
+      <Header
+          isLoggedIn={true}
+          isMovies={true}
+          isSavedMovies={false}
+          isMain={false}
+      />
       <main>
-        <SearchForm />
-        <MoviesCardList />
+        <SearchForm
+          onSearch={onSearch}
+          onSubmitCheckbox={onSubmitCheckbox}
+        />
+        {isLoading && <Preloader />}
+
+        {!isNotFound ?
+        ( <MoviesCardList
+                foundMovies={foundMovies}
+                onSaveMovie={onSaveMovie}
+                onDeleteMovie={onDeleteMovie}
+                savedMovies={savedMovies}
+          />
+        ) : <span className="movie__err">Ничего не найдено</span>
+        }
       </main>
       <Footer />
     </>
@@ -19,3 +47,4 @@ function Movies () {
 };
 
 export default Movies;
+

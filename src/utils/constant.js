@@ -1,5 +1,32 @@
-const MOVIE_API_URL = "https://api.nomoreparties.co/beatfilm-movies";
-//const BASE_URL = "https://api.movie.semenova.nomorepartiesxyz.ru";
-const BASE_URL = "http://localhost:3500";
+export const MOVIE_API_URL = "https://api.nomoreparties.co";
+export const BASE_URL = "https://api.movie.semenova.nomorepartiesxyz.ru";
+//export const BASE_URL = "http://localhost:3000";
 
-export { MOVIE_API_URL, BASE_URL };
+
+export const linkValidate = /^https?:\/\/(www\.)?[a-zA-Z\d-]+\.[\w\d\-.~:/?#[\]@!$&"()*+,;=]{2,}#?$/;
+export const defaultURL = "https://www.youtube.com/"
+export const imageURL = "https://api.nomoreparties.co/"
+
+export const hourTime = 60;
+
+export const DURATION_MAX_TIME = 40;
+
+// Размеры экрана устройств и количество карточек
+export const SCREEN_WIDTH_1280 = 1280;
+export const SCREEN_WIDTH_1101 = 1101;
+export const SCREEN_WIDTH_625 = 625;
+export const SCREEN_WIDTH_320 = 320;
+
+export const MAX_MOVIE_CARDS = 120;
+
+export const ADD_MOVIES_MAX = 3;
+export const ADD_MOVIES_MIN = 2;
+export const ADD_MOVIES_DEF = 3;
+
+export const MOVIES_AMOUNT_320 = 5;
+export const MOVIES_AMOUNT_625 = 8;
+export const MOVIES_AMOUNT_1101 = 12;
+export const MOVIES_AMOUNT_DEF = 12;
+
+
+

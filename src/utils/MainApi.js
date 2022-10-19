@@ -1,6 +1,7 @@
 import { BASE_URL } from "./constant";
+import {linkValidate, defaultURL, imageURL} from "./constant"
 
-const response = (res) => {
+export const response = (res) => {
   if (res.ok) {
     return res.json();
   } else {
@@ -8,16 +9,14 @@ const response = (res) => {
   }
 }
 
-const headers = {
-  Accept: "application/json",
-  "Content-Type": "application/json"
-}
-
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
-    headers,
     credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ name, email, password }),
   }).then(response);
 };
@@ -25,75 +24,58 @@ export const register = (name, email, password) => {
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
-    headers,
     credentials: "include",
-    body: JSON.stringify({
-      "email": email,
-      "password": password
-    }),
-  })
-    .then(response);
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  }).then(response);
 };
 
-export const getUserInfo = (token) => {
+export const getUserInfo = () => {
   return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
+    method: "GET",
+    credentials: "include",
     headers: {
-      ...headers,
-      'Authorization': `Bearer ${token}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-    credentials: 'include',
+
+  }).then(response);
+};
+
+export const editUserInfo = (name, email) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, email }),
+
+  }).then(response);
+};
+
+export const logout = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
   })
   .then(response);
 }
 
-export const editUserInfo = (token, name, email) => {
+export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
-    method: "PATCH",
-    headers: {
-      ...headers,
-       Authorization: `Bearer ${token}`,
-     },
-    credentials: "include",
-    body: JSON.stringify({
-      name: name,
-      email: email
-    })
-  })
-  .then(this._response);
-}
-
-export const saveMovie = (token, movie) => {
-  return fetch(`${BASE_URL}/movies`, {
-      method: "POST",
-      headers: {
-        ...headers,
-         Authorization: `Bearer ${token}`,
-       },
-      credentials: "include",
-      body: JSON.stringify({
-          country: movie.country,
-          director: movie.director,
-          duration: movie.duration,
-          year: movie.year,
-          description: movie.description,
-          image: "https://api.nomoreparties.co/" + movie.image.url,
-          trailerLink: movie.trailerLink,
-          thumbnail: movie.thumbnail,
-          movieId: movie.movieId,
-          nameRU: movie.nameRU,
-          nameEN: movie.nameEN,
-      })
-  })
-      .then(res => res.json())
-      .then(data => data)
-}
-
-export const getSavedMovies = (token) => {
-  return fetch(`${BASE_URL}/movies`, {
     method: "GET",
     headers: {
-     ...headers,
+      "Content-Type": "application/json",
+      Accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
     credentials: "include",
@@ -102,15 +84,54 @@ export const getSavedMovies = (token) => {
     .then(data => data)
 };
 
-export const deleteMovie = (token, movieId) => {
-  return fetch(`${BASE_URL}/movies/${movieId}`, {
-      method: "DELETE",
+export const getSavedMovies = () => {
+  return fetch(`${BASE_URL}/movies`, {
+      method: "GET",
       headers: {
-        ...headers,
-         Authorization: `Bearer ${token}`,
-       },
+          "Content-Type": "application/json",
+          Accept: "application/json",
+      },
       credentials: "include",
   })
-      .then(res => res.json())
-      .then(data => data)
+      .then(response);
 }
+
+export const createMovie = (movie) => {
+        return fetch(`${BASE_URL}/movies`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                country: movie.country || "",
+                director: movie.director || "",
+                duration: movie.duration || "",
+                year: movie.year|| "",
+                description: movie.description || "",
+                image: `${imageURL}${movie.image.url}`,
+                trailerLink: linkValidate.test(movie.trailerLink) ? movie.trailerLink : defaultURL || "",
+                thumbnail: `${imageURL}${movie.image.url}`,
+                movieId: movie._id ? movie.movieId : movie.id,
+                nameRU: movie.nameRU || movie.nameEN,
+                nameEN: movie.nameEN || movie.nameRU,
+            })
+        })
+            .then(response);
+    }
+
+export const deleteMovie = (id) => {
+  return fetch(`${BASE_URL}/movies/${id}`, {
+      method: "DELETE",
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+      },
+      credentials: "include",
+  })
+      .then(response);
+}
+
+
+
