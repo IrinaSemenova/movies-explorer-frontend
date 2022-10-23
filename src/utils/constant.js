@@ -13,9 +13,9 @@ export const DURATION_MAX_TIME = 40;
 
 // Размеры экрана устройств и количество карточек
 export const SCREEN_WIDTH_1280 = 1280;
-export const SCREEN_WIDTH_1101 = 1101;
-export const SCREEN_WIDTH_625 = 625;
+export const SCREEN_WIDTH_768 = 768;
 export const SCREEN_WIDTH_320 = 320;
+export const SCREEN_WIDTH_DEF = 1280
 
 export const MAX_MOVIE_CARDS = 120;
 
@@ -24,8 +24,8 @@ export const ADD_MOVIES_MIN = 2;
 export const ADD_MOVIES_DEF = 3;
 
 export const MOVIES_AMOUNT_320 = 5;
-export const MOVIES_AMOUNT_625 = 8;
-export const MOVIES_AMOUNT_1101 = 12;
+export const MOVIES_AMOUNT_768 = 8;
+export const MOVIES_AMOUNT_1280 = 12;
 export const MOVIES_AMOUNT_DEF = 12;
 
 

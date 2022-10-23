@@ -14,6 +14,8 @@ function Movies ({
   onSubmitCheckbox,
   isNotFound,
   isLoading,
+  keyWord,
+  checkboxStatus
 }){
 
   return (
@@ -28,6 +30,8 @@ function Movies ({
         <SearchForm
           onSearch={onSearch}
           onSubmitCheckbox={onSubmitCheckbox}
+          inputValue={keyWord}
+          isChecked={checkboxStatus}
         />
         {isLoading && <Preloader />}
 
@@ -47,4 +51,3 @@ function Movies ({
 };
 
 export default Movies;
-

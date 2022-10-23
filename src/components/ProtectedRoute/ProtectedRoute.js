@@ -7,7 +7,7 @@ function ProtectedRoute({ children, isLoggedIn }) {
   return (
     <Route>
       {() =>
-        (isLoggedIn ? children : <Redirect to="/signup" />)
+        (isLoggedIn ? children : <Redirect to="/" />)
       }
     </Route>
   );

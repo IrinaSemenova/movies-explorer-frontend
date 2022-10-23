@@ -6,13 +6,13 @@ import { Route } from "react-router-dom";
 
 
 import {
-    SCREEN_WIDTH_1101,
-    SCREEN_WIDTH_625,
+    SCREEN_WIDTH_1280,
+    SCREEN_WIDTH_768,
     SCREEN_WIDTH_320,
     ADD_MOVIES_MAX,
     ADD_MOVIES_MIN,
-    MOVIES_AMOUNT_1101,
-    MOVIES_AMOUNT_625,
+    MOVIES_AMOUNT_1280,
+    MOVIES_AMOUNT_768,
     MOVIES_AMOUNT_320,
 } from "../../utils/constant";
 
@@ -22,50 +22,57 @@ function MoviesCardList ({
   onDeleteMovie,
   savedMovies,
 }) {
+  const [windowSize, setWindowSize] = useState(SCREEN_WIDTH_1280);
+  const [moviesCard, setMoviesCard] = useState(12);
+  const [displayedMovies, setDisplayedMovies] = useState([]);
 
-  const [moviesCard, setMoviesCard] = useState(() => {
-    const windowSize = window.innerWidth;
-    if (windowSize >= SCREEN_WIDTH_1101) {
-       return MOVIES_AMOUNT_1101; // 12 по 3
-    } else if (windowSize >= SCREEN_WIDTH_625) {
-       return MOVIES_AMOUNT_625; // 8 по 2
+  useEffect(() => {
+    setMovies();
+}, [moviesCard]);
+
+  function setMovies() {
+    let movies = [];
+    foundMovies.forEach((item, i) => {if (i < moviesCard) {movies.push(item)}});
+    setDisplayedMovies(movies);
+  }
+
+  // Количество найденных фильмов
+  function countMovies(count) {
+    setMoviesCard(count);
+    let movies = [];
+    foundMovies.forEach((item, i) => {if (i < count) {movies.push(item)}});
+    setDisplayedMovies(movies);
+  }
+
+  useEffect(() => {
+    if (windowSize >= SCREEN_WIDTH_1280) {
+      countMovies(MOVIES_AMOUNT_1280);// 12 по 3
+  } else if (windowSize >= SCREEN_WIDTH_768) {
+      countMovies(MOVIES_AMOUNT_768);// 8 по 2
+  } else if (windowSize >= SCREEN_WIDTH_320) {
+      countMovies(MOVIES_AMOUNT_320);// 5 по 1
+  }
+  }, [windowSize, foundMovies]);
+
+
+  function handleAddButtonClick() {
+    if (windowSize >= SCREEN_WIDTH_1280) {
+        setMoviesCard(moviesCard + ADD_MOVIES_MAX); // + 3
+    } else if (windowSize >= SCREEN_WIDTH_768) {
+        setMoviesCard(moviesCard + ADD_MOVIES_MIN); // +2
     } else if (windowSize >= SCREEN_WIDTH_320) {
-      return MOVIES_AMOUNT_320; // 5 по 1
-    }
-  });
-
-  const displayedMovies = foundMovies.slice(0, moviesCard);
-
-  const [addMovies, setAddMovies] = useState(() => {
-    const windowSize = window.innerWidth;
-    if(windowSize >= SCREEN_WIDTH_1101) {
-        return ADD_MOVIES_MAX; // + 3
-    } else if(windowSize >= SCREEN_WIDTH_625) {
-        return ADD_MOVIES_MIN; // + 2
-    } else if(windowSize >= SCREEN_WIDTH_320) {
-        return ADD_MOVIES_MIN; // +2
-    }
-  });
-
-  function handleScreen () {
-    const windowSize = window.innerWidth;
-    if (windowSize >= SCREEN_WIDTH_1101) {
-      setMoviesCard(MOVIES_AMOUNT_1101);
-    } else if (windowSize >= SCREEN_WIDTH_625) {
-      setMoviesCard(MOVIES_AMOUNT_625);
-    } else if (windowSize >= SCREEN_WIDTH_320) {
-      setMoviesCard(MOVIES_AMOUNT_320);
+        setMoviesCard(moviesCard + ADD_MOVIES_MIN); // +2
     }
   }
 
   useEffect(() => {
-    window.addEventListener('resize', handleScreen);
-  }, []);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);;
+  }, [windowSize]);
 
-  function handleAddButtonClick() {
-          setMoviesCard(prevState => {return prevState + addMovies});
+  function handleResize() {
+    setWindowSize(window.innerWidth);
   }
-
 
   return (
     <>

@@ -80,10 +80,23 @@
     transition: 0.8s ease;
   }
   .navigation__link:hover {
-    opacity: 0.7;
+    cursor: pointer;
+    opacity: .7;
   }
   .navigation__link_active {
     font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+    font-size: 14px;
+    line-height: 18px;
+    transition: 0.8s ease;
+    opacity: .6;
+    border-bottom: 1px solid #000;
+  }
+  .navigation__link_active:hover {
+    cursor: pointer;
+    opacity: .7;
   }
   .navigation__menu {
     display: flex;
@@ -92,6 +105,7 @@
   }
   .navigation__link_type_movies {
     margin-right: 20px;
+    cursor: pointer;
   }
   .navigation__account {
     display: flex;
