@@ -4,7 +4,6 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 import "./SavedMovies.css";
-import { useState, useEffect } from "react";
 
 function SavedMovies ({
   onSearch,
@@ -18,9 +17,6 @@ function SavedMovies ({
   checkboxStatus,
   foundMovies
 }) {
-  useEffect(() => {
-    onSearch("", false);
-  }, []);
 
   return (
     <>
@@ -32,20 +28,20 @@ function SavedMovies ({
       />
       <main>
         <SearchForm
-          onSearch={onSearch}
-          onSubmitCheckbox={onSubmitCheckbox}
-          inputValue={keyWord}
-          isChecked={checkboxStatus}
+         onSearch={onSearch}
+         onSubmitCheckbox={onSubmitCheckbox}
+         inputValue={keyWord}
+         isChecked={checkboxStatus}
           />
 
           {isLoading && <Preloader />}
           {!isNotFound ?
           ( <MoviesCardList
-                //foundMovies={savedMovies}
-                foundMovies={foundMovies}
-                onSaveMovie={onSaveMovie}
-                onDeleteMovie={onDeleteMovie}
-                savedMovies={savedMovies}
+                 //foundMovies={savedMovies}
+                 foundMovies={foundMovies}
+                 onSaveMovie={onSaveMovie}
+                 onDeleteMovie={onDeleteMovie}
+                 savedMovies={savedMovies}
             />
           ): <span className="movie__err">Ничего не найдено</span>
         }
@@ -56,3 +52,4 @@ function SavedMovies ({
 };
 
 export default SavedMovies;
+

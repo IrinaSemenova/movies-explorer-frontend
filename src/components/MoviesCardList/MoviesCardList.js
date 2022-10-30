@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import { Route } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 
 
 import {
@@ -14,6 +14,7 @@ import {
     MOVIES_AMOUNT_1280,
     MOVIES_AMOUNT_768,
     MOVIES_AMOUNT_320,
+    MOVIES_AMOUNT_SAVE,
 } from "../../utils/constant";
 
 function MoviesCardList ({
@@ -21,10 +22,12 @@ function MoviesCardList ({
   onSaveMovie,
   onDeleteMovie,
   savedMovies,
+
 }) {
   const [windowSize, setWindowSize] = useState(SCREEN_WIDTH_1280);
   const [moviesCard, setMoviesCard] = useState(12);
   const [displayedMovies, setDisplayedMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     setMovies();
@@ -51,6 +54,8 @@ function MoviesCardList ({
       countMovies(MOVIES_AMOUNT_768);// 8 по 2
   } else if (windowSize >= SCREEN_WIDTH_320) {
       countMovies(MOVIES_AMOUNT_320);// 5 по 1
+  } if (location.pathname === "/saved-movies") {
+      countMovies(MOVIES_AMOUNT_SAVE);
   }
   }, [windowSize, foundMovies]);
 
@@ -74,6 +79,7 @@ function MoviesCardList ({
     setWindowSize(window.innerWidth);
   }
 
+
   return (
     <>
       <section className="movies">
@@ -86,6 +92,7 @@ function MoviesCardList ({
                         onSaveMovie={onSaveMovie}
                         onDeleteMovie={onDeleteMovie}
                         savedMovies={savedMovies}
+
                         />
                     ))}
         </ul>

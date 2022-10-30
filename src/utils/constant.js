@@ -27,6 +27,7 @@ export const MOVIES_AMOUNT_320 = 5;
 export const MOVIES_AMOUNT_768 = 8;
 export const MOVIES_AMOUNT_1280 = 12;
 export const MOVIES_AMOUNT_DEF = 12;
+export const MOVIES_AMOUNT_SAVE = 1000;
 
 
 

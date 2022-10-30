@@ -2,46 +2,57 @@
 import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useState, useEffect } from "react";
+import {useLocation} from "react-router-dom";
+
 
 function SearchForm ({
   onSearch,
   onSubmitCheckbox,
-  keyWord,
-  checkboxStatus
 }) {
 
   const [inputValue, setInputValue] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [textFilterError, setTextFilterError] = useState("");
 
+  const location = useLocation();
+
   useEffect(() => {
-    setInputValue(keyWord);
-    setIsChecked(checkboxStatus);
-  }, [checkboxStatus, keyWord]);
+      if (location.pathname === "/movies") {
+          setInputValue(localStorage.getItem("searchKeyWordMovies"));
+          setIsChecked(JSON.parse(localStorage.getItem("checkbox")));
+      } else if (location.pathname === "/saved-movies") {
+          const checkboxSavedMovies = JSON.parse(localStorage.getItem("checkboxSavedMovies"));
+          setIsChecked(checkboxSavedMovies);
+          onSubmitCheckbox(checkboxSavedMovies);
+          onSearch(inputValue,isChecked);
+      }
+  }, [location]);
 
   function handleInputChange(evt) {
-    setInputValue(evt.target.value);
+      setInputValue(evt.target.value);
 
-    if (setInputValue.length === 0) {
-      setTextFilterError("Нужно ввести ключевое слово");
-  } else {
-      setTextFilterError("")
-  }
+      if (setInputValue.length === 0) {
+          setTextFilterError("Нужно ввести ключевое слово");
+      } else {
+          setTextFilterError("")
+      }
   }
 
   function handleSubmitSearch(evt) {
-    evt.preventDefault();
-    if (!inputValue) {
-      setTextFilterError("Нужно ввести ключевое слово");
-    } else {
-    onSearch(inputValue, isChecked); }
+      evt.preventDefault();
+
+      if (!inputValue) {
+        setTextFilterError("Нужно ввести ключевое слово");
+      } else {
+      onSearch(inputValue, isChecked); }
+
   }
 
   function handleChangeCheckbox() {
-    const newValue = !isChecked;
-    setIsChecked(newValue);
-    onSubmitCheckbox(newValue);
+      setIsChecked(!isChecked);
+      onSubmitCheckbox(!isChecked);
   }
+
 
   return (
 
@@ -57,7 +68,7 @@ function SearchForm ({
                 name="search"
                 type="text"
                 placeholder="Фильм"
-                value={inputValue}
+                value={inputValue || ""}
                 onChange={handleInputChange}
                 required />
               <button className="search__button" type="submit" >Найти</button>
@@ -69,6 +80,7 @@ function SearchForm ({
             isChecked={isChecked}
             onSubmitCheckbox={handleChangeCheckbox}
           />
+
         </form>
       <div className="search__line" />
 
@@ -77,3 +89,4 @@ function SearchForm ({
   )}
 
 export default SearchForm;
+
