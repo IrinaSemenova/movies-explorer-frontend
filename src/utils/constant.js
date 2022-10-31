@@ -1,6 +1,6 @@
 export const MOVIE_API_URL = "https://api.nomoreparties.co";
-export const BASE_URL = "https://api.movie.semenova.nomorepartiesxyz.ru";
-//export const BASE_URL = "http://localhost:3000";
+// export const BASE_URL = "https://api.movie.semenova.nomorepartiesxyz.ru";
+export const BASE_URL = "http://localhost:3000";
 
 
 export const linkValidate = /^https?:\/\/(www\.)?[a-zA-Z\d-]+\.[\w\d\-.~:/?#[\]@!$&"()*+,;=]{2,}#?$/;

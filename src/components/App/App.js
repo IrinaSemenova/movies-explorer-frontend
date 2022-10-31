@@ -174,10 +174,6 @@ const handleSignOut = () => {
         setLoggedIn(false);
         setFoundMovies([]);
         setAllMovies([]);
-        setSavedMovies([]);
-        setSavedMoviesList([]);
-        setSearchKeyWordMovies("");
-        setSearchKeyWordSavedMovies("");
         openPopup(exitSuccessful);
     })
     .catch(errorApi);
@@ -189,12 +185,8 @@ const fullLogoutAuth = (err) => {
       localStorage.clear();
       localStorage.removeItem("signin");
       setAllMovies([]);
-      setSavedMovies([]);
       setCurrentUser({});
       setFoundMovies([]);
-      setSavedMoviesList([]);
-      setSearchKeyWordMovies("");
-      setSearchKeyWordSavedMovies("");
       history.push("/");
     } else { return err}
   }
