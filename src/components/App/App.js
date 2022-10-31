@@ -274,7 +274,7 @@ function handleDeleteMovie(movie) {
 // Страница Сохраненные фильмы (получение сохраненных фильмов, поиск)
 useEffect(() => {
 
-  if (isLoggedIn) {
+  if (isLoggedIn && currentUser) {
     mainApi.getSavedMovies()
       .then((res) => {
         const savedMovies = res.filter((movie) => movie.owner === currentUser._id);
@@ -290,7 +290,7 @@ useEffect(() => {
     const arrSearched = JSON.parse(localStorage.getItem("searchedMovies") || "[]");
     setFoundMovies(arrSearched);
   }
-}, [isLoggedIn]);
+}, [isLoggedIn, currentUser]);
 
 useEffect(() => {
   if (isLoggedIn) {
