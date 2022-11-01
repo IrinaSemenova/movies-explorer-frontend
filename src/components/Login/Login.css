@@ -16,21 +16,23 @@
   font-size: 13px;
   line-height: 16px;
   color: #000000;
-  margin: 0 0 10px 0;
+  margin: 0 0 4px 0;
 }
 .login__error {
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
   color: #EE3465;
-  margin-top: 10px;
+  margin-bottom: 12px;
 }
 .login__input:focus-visible {
   border-bottom: 1px solid #7489ED;
   outline: none;
+  border-radius: 0;
 }
 .login__input:invalid {
   color: #EE3465;
   outline-color: #7489ED;
 }
+
 

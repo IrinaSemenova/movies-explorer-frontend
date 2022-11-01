@@ -53,6 +53,7 @@
   position: absolute;
   right: 6px;
   top: 178px;
+  cursor: pointer;
 }
 .movies__save_active {
   background: url("../../images/save-active.svg") center no-repeat;
@@ -65,6 +66,7 @@
   position: absolute;
   right: 6px;
   top: 178px;
+  cursor: pointer;
 }
 .movies__delete {
   background: url("../../images/del.svg") center no-repeat;
@@ -77,6 +79,7 @@
   position: absolute;
   right: 6px;
   top: 178px;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

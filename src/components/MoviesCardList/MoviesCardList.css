@@ -34,6 +34,9 @@
 .movies__button:hover {
   opacity: 0.8;
 }
+.movies__button_hidden {
+  display: none;
+}
 
 @media (min-width:768px) {
   .movies {

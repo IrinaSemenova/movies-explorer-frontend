@@ -5,6 +5,7 @@
   justify-content: space-between;
   height: 74px;
   background: #C0DB75;
+  border: none;
 }
 .header__gray{
   display: flex;
@@ -13,6 +14,7 @@
   justify-content: space-between;
   height: 74px;
   background: #FAFAFA;
+  border: none;
 }
 .header__logo {
   width: 38px;

@@ -1,23 +1,118 @@
 // компонент, который управляет отрисовкой карточек фильмов на страницу и их количеством.
+import { useState, useEffect } from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { Route, useLocation } from "react-router-dom";
 
-function MoviesCardList () {
+
+import {
+    SCREEN_WIDTH_1280,
+    SCREEN_WIDTH_768,
+    SCREEN_WIDTH_320,
+    ADD_MOVIES_MAX,
+    ADD_MOVIES_MIN,
+    MOVIES_AMOUNT_1280,
+    MOVIES_AMOUNT_768,
+    MOVIES_AMOUNT_320,
+    MOVIES_AMOUNT_SAVE,
+} from "../../utils/constant";
+
+function MoviesCardList ({
+  foundMovies,
+  onSaveMovie,
+  onDeleteMovie,
+  savedMovies,
+
+}) {
+  const [windowSize, setWindowSize] = useState(SCREEN_WIDTH_1280);
+  const [moviesCard, setMoviesCard] = useState(12);
+  const [displayedMovies, setDisplayedMovies] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    setMovies();
+}, [moviesCard]);
+
+  function setMovies() {
+    let movies = [];
+    foundMovies.forEach((item, i) => {if (i < moviesCard) {movies.push(item)}});
+    setDisplayedMovies(movies);
+  }
+
+  // Количество найденных фильмов
+  function countMovies(count) {
+    setMoviesCard(count);
+    let movies = [];
+    foundMovies.forEach((item, i) => {if (i < count) {movies.push(item)}});
+    setDisplayedMovies(movies);
+  }
+
+  useEffect(() => {
+    if (windowSize >= SCREEN_WIDTH_1280) {
+      countMovies(MOVIES_AMOUNT_1280);// 12 по 3
+  } else if (windowSize >= SCREEN_WIDTH_768) {
+      countMovies(MOVIES_AMOUNT_768);// 8 по 2
+  } else if (windowSize >= SCREEN_WIDTH_320) {
+      countMovies(MOVIES_AMOUNT_320);// 5 по 1
+  } if (location.pathname === "/saved-movies") {
+      countMovies(MOVIES_AMOUNT_SAVE);
+  }
+  }, [windowSize, foundMovies]);
+
+
+  function handleAddButtonClick() {
+    if (windowSize >= SCREEN_WIDTH_1280) {
+        setMoviesCard(moviesCard + ADD_MOVIES_MAX); // + 3
+    } else if (windowSize >= SCREEN_WIDTH_768) {
+        setMoviesCard(moviesCard + ADD_MOVIES_MIN); // +2
+    } else if (windowSize >= SCREEN_WIDTH_320) {
+        setMoviesCard(moviesCard + ADD_MOVIES_MIN); // +2
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);;
+  }, [windowSize]);
+
+  function handleResize() {
+    setWindowSize(window.innerWidth);
+  }
+
+
   return (
     <>
       <section className="movies">
+
         <ul className="movies__list">
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
+          {displayedMovies.map((item) => (
+                        <MoviesCard
+                        movie={item}
+                        key={item.id || item._id}
+                        onSaveMovie={onSaveMovie}
+                        onDeleteMovie={onDeleteMovie}
+                        savedMovies={savedMovies}
+
+                        />
+                    ))}
         </ul>
-        <button className="movies__button" type="button">Ещё</button>
+
+        {foundMovies.length !== displayedMovies.length ? (
+           <Route path="/movies">
+                      <button
+                        className="movies__button"
+                        type="button"
+                        onClick={handleAddButtonClick}
+                      >
+                        Ещё
+                      </button>
+           </Route>
+        ) : (
+            ""
+        )}
       </section>
     </>
   )
 };
-
 export default MoviesCardList;
+
