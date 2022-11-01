@@ -11,7 +11,7 @@ function FilterCheckbox ({
           className="checkbox__input"
           type="checkbox"
           id="checkbox"
-          checked={isChecked}
+          checked={isChecked} // || false
           onChange={onSubmitCheckbox}
          />
         <label className="checkbox__label">Короткометражки</label>

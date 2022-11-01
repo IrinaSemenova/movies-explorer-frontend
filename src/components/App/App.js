@@ -273,6 +273,8 @@ function handleDeleteMovie(movie) {
 
 // Страница Сохраненные фильмы (получение сохраненных фильмов, поиск)
 useEffect(() => {
+  setSearchKeyWordMovies(localStorage.getItem("searchKeyWordMovies") || "");
+  setCheckbox(localStorage.getItem("checkbox") === "true");
 
   if (isLoggedIn && currentUser) {
     mainApi.getSavedMovies()
